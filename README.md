@@ -20,7 +20,7 @@ University students preparing for multi-subject exam periods
 
 ## Technologies Used
 1. Python: OOP, Exception Handling, File handling, Date and time manipulation and Randomization.
-2. Database technology: SQLite for database tables such as: SUBJECTS TABLE to store all the subjects the user wants to study, EXAMS TABLE to store exam dates for each subject and QUESTIONS TABLE to store quiz questions and NOTES TABLE that will link the user study notes to a subject.
+2. Database technology: SQLite for database tables such as: SUBJECTS TABLE to store all the subjects the user wants to study, EXAMS TABLE to store exam dates for each subject and NOTES TABLE that will link the user study notes to a subject.
 3. Algorithms: Study priority that will calculate revision priority based on subject difficulty and days remaining until the exam, Sorting which will sort the exams from highest to lowest priority, Quiz scoring and Randomization that will shuffle the questions using random.shuffle() to reorder quizzes each time.
 4. Data Structures: Dictionaries, Lists and Tuples.
 5. File Handling: Open, Write and Close files using with for text files to export study plans
