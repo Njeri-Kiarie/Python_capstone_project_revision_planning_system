@@ -34,7 +34,8 @@ elif menu == "Subjects":
             "Add Subject",
             "View Subjects",
             "Search Subject",
-            "Update Subject"
+            "Update Subject",
+            "Delete Subject"
         ]
     )
     if option == "Add Subject":
@@ -148,6 +149,31 @@ elif menu == "Subjects":
                         st.success("Subject updated successfully!")
                     else:
                         st.error("Update failed.")
+    elif option == "Delete Subject":
+        st.header("Delete Subject")
+        subjects = db.get_subjects()
+
+        if not subjects:
+            st.warning("No subjects available.")
+
+        else:
+            subject_dict = {
+                row[1]: row[0]
+                for row in subjects
+            }
+
+            selected = st.selectbox(
+                "Select Subject",
+                list(subject_dict.keys())
+            )
+
+            if st.button("Delete Subject"):
+                success = db.delete_subject(subject_dict[selected])
+
+                if success:
+                    st.success("Subject deleted successfully!")
+                else:
+                    st.error("Delete failed.")
 elif menu == "Exams":
     option = st.sidebar.selectbox(
         "Exam Options",
