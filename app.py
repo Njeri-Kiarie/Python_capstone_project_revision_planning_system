@@ -193,7 +193,6 @@ elif menu == "Exams":
             st.warning("Please add a subject first.")
 
         else:
-
             subject_dict = {
                 row[1]: row[0]
                 for row in subjects
@@ -208,12 +207,17 @@ elif menu == "Exams":
 
             if st.button("Add Exam"):
 
-                db.add_exam(
-                    subject_dict[selected],
-                    str(exam_date)
-                )
+                # Check if the exam date is in the past
+                if exam_date < datetime.date.today():
+                    st.error("The exam date cannot be in the past.")
 
-                st.success("Exam added successfully!")
+                else:
+                    db.add_exam(
+                        subject_dict[selected],
+                        str(exam_date)
+                    )
+
+                    st.success("Exam added successfully!")
 
     elif option == "View Exams":
 
@@ -253,10 +257,12 @@ elif menu == "Exams":
                 f"{row[2]} ({row[4]})": row
                 for row in exams
             }
+
             selected = st.selectbox(
                 "Select Exam",
                 exam_dict.keys()
             )
+
             row = exam_dict[selected]
             exam_id = row[0]
 
@@ -274,20 +280,26 @@ elif menu == "Exams":
 
             exam_date = st.date_input(
                 "Exam Date",
-                value=datetime.datetime.strptime(row[4], "%Y-%m-%d").date()
+                value=datetime.datetime.strptime(row[4], "%Y-%m-%d").date(),
+                min_value=datetime.date.today()
             )
 
             if st.button("Update Exam"):
-                success = db.update_exam(
-                    exam_id,
-                    subject_dict[selected_subject],
-                    str(exam_date)
-                )
 
-                if success:
-                    st.success("Exam updated successfully!")
+                if exam_date < datetime.date.today():
+                    st.error("The exam date cannot be in the past.")
+
                 else:
-                    st.error("Exam not found.")
+                    success = db.update_exam(
+                        exam_id,
+                        subject_dict[selected_subject],
+                        str(exam_date)
+                    )
+
+                    if success:
+                        st.success("Exam updated successfully!")
+                    else:
+                        st.error("Exam not found.")
 
     elif option == "Delete Exam":
         st.header("Delete Exam")
