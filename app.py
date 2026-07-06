@@ -7,7 +7,7 @@ from models import Subject, Exam
 
 db = Database()
 
-menu = st.sidebar.selectbox(
+menu = st.sidebar.radio(
     "Menu",
     [
         "Home",
@@ -327,7 +327,7 @@ elif menu == "Exams":
 
 elif menu == "Generate Study Plan":
         st.header("Generate Study Plan")
-        if st.button("Generate Study Plan"):
+        if st.radio("Generate Study Plan", ["Yes", "No"]) == "Yes":
             exams = db.get_exams()
 
             if not exams:
