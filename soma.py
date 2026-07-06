@@ -169,10 +169,11 @@ def delete_subject():
 def add_exam():
     header("ADD EXAM")
     subjects = db.get_subjects()
-    
+
     if not subjects:
         print("Please add a subject first.")
         return
+
     print("\nAvailable Subjects")
 
     for row in subjects:
@@ -184,8 +185,8 @@ def add_exam():
     except ValueError:
         print("Invalid input.")
         return
-    
-    # Checking whether the subject exists
+
+    # Check whether the subject exists
     subject = next((row for row in subjects if row[0] == subject_id), None)
 
     if subject is None:
@@ -195,15 +196,19 @@ def add_exam():
     exam_date = input("\nEnter Exam Date (YYYY-MM-DD): ").strip()
 
     try:
-        datetime.datetime.strptime(exam_date, "%Y-%m-%d")
-    
+        exam_date = datetime.datetime.strptime(exam_date, "%Y-%m-%d").date()
+
     except ValueError:
-        print("Invalid date format.")
+        print("Invalid date format. Please use YYYY-MM-DD.")
         return
 
-    db.add_exam(subject_id, exam_date)
-    print("\nExam added successfully!")
+    # Check if the exam date is in the past
+    if exam_date < datetime.date.today():
+        print("Error: The exam date cannot be in the past.")
+        return
 
+    db.add_exam(subject_id, str(exam_date))
+    print("\nExam added successfully!")
     
 # View exams
 def view_exams():
@@ -277,7 +282,7 @@ def update_exam():
     exam_date = input("\nEnter New Exam Date (YYYY-MM-DD): ").strip()
 
     try:
-        datetime.datetime.strptime(exam_date, "%Y-%m-%d")
+        exam_date = datetime.datetime.strptime(exam_date, "%Y-%m-%d").date()
     
     except ValueError:
         print("Invalid date format.")
