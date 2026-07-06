@@ -28,7 +28,7 @@ if menu == "Home":
     st.write("Welcome! Let's start your Revision Planning.")
 
 elif menu == "Subjects":
-    option = st.selectbox(
+    option = st.sidebar.radio(
         "Select an option",
         [
             "Add Subject",
@@ -175,7 +175,7 @@ elif menu == "Subjects":
                 else:
                     st.error("Delete failed.")
 elif menu == "Exams":
-    option = st.sidebar.selectbox(
+    option = st.sidebar.radio(
         "Exam Options",
         [
             "Add Exam",
