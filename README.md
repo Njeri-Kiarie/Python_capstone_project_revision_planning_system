@@ -11,7 +11,7 @@ University students preparing for multi-subject exam periods.
 
 ## Planned Features
 1. Subject management: Adding, Viewing, Updating and Deleting Subjects.
-2. Priority-based study planning by using a priority calculator formula : priority = subject.difficulty / (10*days_remaining). The value "10" has been added for priority readability and does not alter with priority ranking.
+2. Priority-based study planning by using a priority calculator formula : priority = subject.difficulty * (10/days_remaining). The value "10" has been added for priority readability and does not alter with priority ranking.
 3. Automatic study plan generation.
 4. Study plan export to csv file.
 6. Persistent Data storage in the soma database.
