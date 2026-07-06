@@ -93,7 +93,7 @@ class Database:
                             (exam_id,)
                             )
 
-        self.connection.commit()
+        self.conn.commit()
         return self.cursor.rowcount > 0
     
     #Close Database
