@@ -92,9 +92,9 @@ elif menu == "Subjects":
                 df = pd.DataFrame(
                 results,
                 columns=["ID", "Subject", "Difficulty"]
-            )
+                )
 
-            st.dataframe(df, use_container_width=True)
+                st.dataframe(df, use_container_width=True)
 
     elif option == "Update Subject":
         st.header("Update Subject")
