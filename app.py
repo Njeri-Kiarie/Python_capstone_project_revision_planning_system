@@ -77,8 +77,6 @@ elif menu == "Subjects":
 
             st.dataframe(df)
 
-        keyword = st.text_input("Enter a subject name")
-
     elif option == "Search Subject":
         st.header("Search Subject")
         keyword = st.text_input("Enter a subject name")
