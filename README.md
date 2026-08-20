@@ -1,4 +1,4 @@
-# Python_Capstone_Project_Idea_Proposal
+# Python-Planning-System
 # Soma Planner
 ## Project Description
 Soma Planner is a revision application that is designed to help students optimize, manage and schedule their study time especially during the exam period. By inputting their exam dates, subjects and difficulty weights, the system will calculate a personalized study timetable and generate a study plan based on content difficulty.
